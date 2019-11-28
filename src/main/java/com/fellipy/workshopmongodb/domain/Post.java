@@ -6,6 +6,8 @@ import java.util.Date;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fellipy.workshopmongodb.dto.AuthorDTO;
+
 @Document(collection = "post")
 public class Post implements Serializable{
 
@@ -15,19 +17,18 @@ public class Post implements Serializable{
 	private String body;
 	private String title;
 	private Date date;
-	private User user;
+	private AuthorDTO author;
 	
 	public Post() {
-
 	}
 	
-	public Post(String id, String body, String title, java.util.Date date2, User user) {
+	public Post(String id, String body, String title, java.util.Date date2, AuthorDTO user) {
 		super();
 		this.id = id;
 		this.body = body;
 		this.title = title;
 		this.date = date2;
-		this.user = user;
+		this.author = user;
 	}
 	public String getId() {
 		return id;
@@ -54,12 +55,12 @@ public class Post implements Serializable{
 		this.date = date;
 	}
 	
-	public User getUser() {
-		return user;
+	public AuthorDTO getAuthor() {
+		return author;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setAuthor(AuthorDTO user) {
+		this.author = user;
 	}
 
 	@Override

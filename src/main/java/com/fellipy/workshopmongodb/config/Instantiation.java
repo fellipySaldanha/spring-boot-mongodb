@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.fellipy.workshopmongodb.domain.Post;
 import com.fellipy.workshopmongodb.domain.User;
+import com.fellipy.workshopmongodb.dto.AuthorDTO;
 import com.fellipy.workshopmongodb.repository.PostRepository;
 import com.fellipy.workshopmongodb.repository.UserRepository;
 
@@ -36,12 +37,12 @@ public class Instantiation implements CommandLineRunner{
 		
 		userRepository.saveAll(Arrays.asList(maria, alex, bob));
 		
-		Post post1 = new Post(null, "Vou viajar para São Paulo. Abraços!", "Partiu viagem", sfdDateFormat.parse("21/08/2019"), maria);
-		Post post2 = new Post(null, "Acordei feliz hoje!", "BOm dia", sfdDateFormat.parse("15/04/2019"), alex);
+		Post post1 = new Post(null, "Vou viajar para São Paulo. Abraços!", "Partiu viagem", sfdDateFormat.parse("21/08/2019"), new AuthorDTO(maria));
+		Post post2 = new Post(null, "Acordei feliz hoje!", "BOm dia", sfdDateFormat.parse("15/04/2019"),  new AuthorDTO(maria));
 		
 		postRespository.saveAll(Arrays.asList(post1, post2));
 		
-		maria.setListPosts(Arrays.asList(post1));
+		maria.setListPosts(Arrays.asList(post1, post2));
 		userRepository.save(maria);
 	}
 
