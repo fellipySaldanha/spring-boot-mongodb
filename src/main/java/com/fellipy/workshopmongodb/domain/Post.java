@@ -1,15 +1,18 @@
 package com.fellipy.workshopmongodb.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fellipy.workshopmongodb.dto.AuthorDTO;
+import com.fellipy.workshopmongodb.dto.CommentDTO;
 
 @Document(collection = "post")
-public class Post implements Serializable{
+public class Post implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -18,10 +21,11 @@ public class Post implements Serializable{
 	private String title;
 	private Date date;
 	private AuthorDTO author;
-	
+	private List<CommentDTO> comments = new ArrayList<>();;
+
 	public Post() {
 	}
-	
+
 	public Post(String id, String body, String title, java.util.Date date2, AuthorDTO user) {
 		super();
 		this.id = id;
@@ -30,37 +34,53 @@ public class Post implements Serializable{
 		this.date = date2;
 		this.author = user;
 	}
+
 	public String getId() {
 		return id;
 	}
+
 	public void setId(String id) {
 		this.id = id;
 	}
+
 	public String getBody() {
 		return body;
 	}
+
 	public void setBody(String body) {
 		this.body = body;
 	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	public Date getDate() {
 		return date;
 	}
+
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
+
 	public AuthorDTO getAuthor() {
 		return author;
 	}
 
 	public void setAuthor(AuthorDTO user) {
 		this.author = user;
+	}
+
+	public List<CommentDTO> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<CommentDTO> comments) {
+		this.comments = comments;
 	}
 
 	@Override
@@ -70,6 +90,7 @@ public class Post implements Serializable{
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -86,5 +107,5 @@ public class Post implements Serializable{
 			return false;
 		return true;
 	}
-		
+
 }
